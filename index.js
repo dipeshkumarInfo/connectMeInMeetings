@@ -15,7 +15,7 @@ const path = require('path');
 /*  start : "Used Middleware, services and Helpers" */
 
 // Middleware
-  const AuthenticateUser = require(fconf('CORE:http:middleware') + '/AuthenticateLiveStreamSession');
+  const AuthenticateSession = require(fconf('CORE:http:middleware') + '/AuthenticateLiveStreamSession');
   const preventBack = require(fconf('CORE:http:middleware') + '/PreventBackMiddleware');
 
   // Service Providers
@@ -28,13 +28,13 @@ const path = require('path');
   
   
   // -- API Section 
-  app.use(`/:path(${api_url.join('|')})`, AuthenticateUser, (req, res, next) => { apiHandleRoute(req, res, next, "/index") });
+  app.use(`/:path(${api_url.join('|')})`, (req, res, next) => { apiHandleRoute(req, res, next, "/index") });
 
 
   // -- Web Section
 
-  // Login and Sign Up
-  app.use('/', (req, res, next) => { webHandleRoute(req, res, next, "/login") });
+  // Main Index Page
+  app.use('/', AuthenticateSession, (req, res, next) => { webHandleRoute(req, res, next, "/app") });
   
 /* end */
 
@@ -42,7 +42,7 @@ const path = require('path');
 /* start : "Other pages During Request Other Respons By Requets" */
 
   //Not Allowed or Not Access Route
-  app.use('/error', AuthenticateUser, preventBack, require(fconf('CORE:routes:web') + '/errors'));
+  app.use('/error', preventBack, require(fconf('CORE:routes:web') + '/errors'));
 
   // catch 404 and forward to error handler
   // app.use((req, res, next) => {
