@@ -1,21 +1,25 @@
 {
-  "name": "connect-me-meeting",
-  "version": "1.1.0",
-  "description": "A conference call implementation using WebRTC, Socket.io and Node.js",
-  "main": "app.js",
+  "name": "connectme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "livestreaming"
-  ],
-  "author": "Dipesh Kumar",
+  "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
     "express": "^4.18.2",
+    "mongoose": "^7.0.1",
+    "multer": "^1.4.5-lts.1",
+    "nconf": "^0.12.0",
     "nodemon": "^2.0.20",
     "serve-favicon": "^2.5.0",
     "socket.io": "^4.5.4",
+    "uuid": "^9.0.0",
     "xssfilter": "^0.5.3"
   }
 }

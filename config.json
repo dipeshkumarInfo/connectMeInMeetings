@@ -1,0 +1,51 @@
+{
+    "CPORT": "8001",
+    "CBASE_URL":"http://localhost:8001/",
+    "CORE" : {
+        "app" : {
+            "helpers":"app/Helpers",
+            "http":"app/Http",
+            "models":"app/Models",
+            "providers":"app/Providers"
+        },
+        "helpers" : {
+            "classes" : "app/Helpers/Classes"
+        },
+        "http" : {
+            "controllers" : "app/Http/Controllers",
+            "middleware" : "app/Http/Middleware"
+        },
+        "controllers" : {
+            "api" : "app/Http/Controllers/Api"
+        },
+        "config":"config",
+        "database":{
+            "seeders" : "database/seeders",
+            "factory" : "database/factory"
+        },
+        "public": {
+            "assets" : {
+                "css":"public/assets/css",
+                "img":"public/assets/img",
+                "js":"public/assets/js",
+                "plugin":"public/assets/plugin"
+            }
+        },
+        "resources" : {
+            "views" : {
+                "classes" : "resources/views/Classes",
+                "courses" : "resources/views/Courses",
+                "errors" : "resources/views/Errors",
+                "layout" : "resources/views/Layout"
+            }
+        },
+        "routes" : {
+            "web" : "routes/web",
+            "api" : "routes/api"
+        },
+        "api" : {
+            "list" : "routes/api/list"
+        },
+        "vendor" : "vendor"
+    }
+}
