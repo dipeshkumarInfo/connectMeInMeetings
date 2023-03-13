@@ -1,0 +1,51 @@
+<main class="main users">
+    <div class="invite-link">
+        <p> <button onclick="copyText('<%= joining_link %>')" >Copy Invitation Link</button></p>
+    </div>
+
+    <div class="container">
+        
+        <div class="top-title">
+            <p class="stat-cards-info__num" id="session_status">Session Not Stared</p>
+        </div>
+
+          <div class="info-section">
+            <div class="transform-text" capitalize="true" style="padding-bottom: 30px;">
+                <div class="flex-card">
+                <% if(typeof classes != "undefined" && classes != null) {%>
+                <div id="countdownTimer<%= classes._id %>" class="timer transform-text" capitalize="true">
+                    <div id="days<%= classes._id %>">00 D</div>
+                    <span>:</span>
+                    <div id="hours<%= classes._id %>">00 H</div>
+                    <span>:</span>
+                    <div id="minutes<%= classes._id %>">00 M</div>
+                    <span>:</span>
+                    <div id="seconds<%= classes._id %>">00 S</div>
+                </div>
+
+                 <script>
+                    countdownTimer("<%= classes.start_time %>", "<%= classes.end_time %>", "days<%= classes._id %>", "hours<%= classes._id %>", "minutes<%= classes._id %>", "seconds<%= classes._id %>", "countdownTimer<%= classes._id %>");
+                </script>
+                <% }else{ %>
+                    <h3 class="alert alert-danger" style="margin-top: 20px;">Invalid Session</h3>
+                <% }%>
+            </div>
+            </div>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+
+            <div class="options-btn">
+                    <span onclick="toggleIcons(this, 'fa-microphone', 'fa-microphone-slash')" class="fas fa-microphone"></span>
+                    <span onclick="toggleIcons(this, 'fa-video', 'fa-video-slash')" class="fas fa-video"></span>
+            </div>
+
+            <div class="bottom-feedback">
+                <a href="#" class="stat-cards-info__progress text-primary">
+                    <span class="stat-cards-info__profit success">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-feather" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>
+                    </span>
+                    Submit feedback to improve our service
+                </a>
+                </div>
+            </div>
+    </div>
+  </main>

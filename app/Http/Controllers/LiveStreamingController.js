@@ -1,3 +1,30 @@
+const { classDetail } = require(fconf('CORE:controllers:api') + '/LiveStreamingController');
+const { checkClassDay } = require(fconf('CORE:helpers:classes') + '/IndexHelper');
+
+const _dirname = 'Live';
+
+const redirectToStreammingUrl = async (req, resp, next) => {
+    try {
+        const uuid = req.params.uuid;
+        const ClassDetails = await classDetail(uuid);
+
+        resp.render(_dirname + '/index', { 
+            title: "Wait For Start Class | connectMe", 
+            alert_message: req.flash('alert_message'), 
+            css: '<link rel="stylesheet" href="/css/live/style.css"><link rel="stylesheet" href="/css/custom-grid.css"><link rel="stylesheet" href="/css/custom-grid.css.map">',
+            script: '<script src="/js/live/script.js"></script>',
+            MainScriptShow:false , 
+            checkClassDay,
+            joining_link : base_path+ "/live/join-session/"+ uuid,
+            classes : ClassDetails.msg
+        });
+
+    } catch (error) {
+        req.flash('alert_message', [{ msg: "Something Wrong !" + error.message, type: 'danger' }]);
+        return resp.redirect(base_path + 'classes/upcomming');
+    }
+}
+
 const stream = ( socket ) => {
     socket.on( 'subscribe', ( data ) => {
         //subscribe/join a room
@@ -29,6 +56,9 @@ const stream = ( socket ) => {
     socket.on( 'chat', ( data ) => {
         socket.to( data.room ).emit( 'chat', { sender: data.sender, msg: data.msg } );
     } );
-};
+}
 
-module.exports = stream;
+module.exports = {
+    redirectToStreammingUrl,
+    stream
+};

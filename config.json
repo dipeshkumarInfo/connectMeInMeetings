@@ -1,6 +1,6 @@
 {
-    "CPORT": "8000",
-    "CBASE_URL":"http://localhost:8000/",
+    "CPORT": "8001",
+    "CBASE_URL":"http://localhost:8001/",
     "CORE" : {
         "app" : {
             "helpers":"app/Helpers",
